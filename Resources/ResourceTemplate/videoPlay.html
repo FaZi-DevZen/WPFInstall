@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>resources</title>
+    <link href="video-js.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        body {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 50px;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .m {
+            width: 100%;
+            height: 100%;
+        }
+
+        .buttonGroup {
+            height: 50px;
+            text-align: center;
+            display: flex;
+        }
+        .buttonGroup>.header{
+            flex-grow: 1;
+            height: 100%;
+            line-height: 49px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .buttonGroup > button {
+            display: none;
+            margin-top: 10px;
+            margin-left: 10px;
+            margin-right: 10px;
+            height: 30px;
+            width: 60px;
+            border-radius: 15px;
+            outline: none;
+            user-select: none;
+            border: 1px solid #000000;
+        }
+
+        .buttonGroup > .close {
+            color: #ffffff;
+            background-color: orange;
+            border: 1px solid #ffcc66;
+            display: block;
+        }
+
+        .video-js .vjs-big-play-button {
+            top: 50%;
+            left: 50%;
+            width: 90px;
+            height: 50px;
+            margin-left: -45px;
+            margin-top: -25px;
+        }
+
+        #my-video {
+            height: 100%;
+        }
+
+        .my-video-dimensions.vjs-fluid {
+            padding: 0;
+        }
+        .video-list > span {
+            display: inline-block;
+            margin: 0 10px;
+            height: 100%;
+            line-height: 49px;
+            white-space: nowrap;
+            cursor: default;
+        }
+        .active {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+<div class="m">
+    <video id="my-video" class="video-js vjs-big-play-centered vjs-fluid" controls preload="auto">
+        <p class="vjs-no-js">要观看此视频，请启用JavaScript，并考虑使用chrome浏览器</p>
+    </video>
+    <div class="buttonGroup">
+        <button class="prev">上一段</button>
+        <div class="video-list">
+
+        </div>
+        <button class="next">下一段</button>
+        <span class="header"></span>
+    </div>
+    <script src="jquery.min.js"></script>
+    <script src="video.min.js"></script>
+    <script type="text/javascript">
+        function setSrc(src, title, nameList) {
+            if (title) {
+                document.getElementsByClassName('header')[0].innerHTML = title;
+            }
+            var myPlayer= window.myPlayer = videojs('my-video', {fluid: true}),
+                prev = document.getElementsByClassName('prev')[0],
+                next = document.getElementsByClassName('next')[0],
+                videoListBox = document.getElementsByClassName('video-list')[0];
+            myPlayer.ready(function () {
+                if (src.length === 1) {
+                    myPlayer.src(src[0]);
+                    if (nameList) {
+                        videoListBox.innerHTML = '<span class="active">' + nameList[0] + '</span>';
+                    } else {
+                        var fileName = getFileName(src[0]);
+                        videoListBox.innerHTML = '<span class="active">' + fileName + '</span>';
+                    }
+                } else if (src.length > 1) {
+                    var num = 0,//记录当前播放视频下标
+                        size = src.length,//视频列表长度
+                        allFileName = [],//所有视频名称
+                        str = '';//渲染span字符串
+                    if (nameList) {
+                        for (var nl = 0; nl < nameList.length; nl++) {//渲染列表
+                            if (nl === 0) {
+                                str += '<span class="active">' + nameList[nl] + '</span>'
+                            } else {
+                                str += '<span>' + nameList[nl] + '</span>'
+                            }
+                        }
+                    } else {
+                        for (var i = 0; i < size; i++) {//获取所有视频名称
+                            allFileName.push(getFileName(src[i]))
+                        }
+                        for (var o = 0; o < allFileName.length; o++) {//渲染列表
+                            if (o === 0) {
+                                str += '<span class="active">' + allFileName[o] + '</span>'
+                            } else {
+                                str += '<span>' + allFileName[o] + '</span>'
+                            }
+                        }
+                    }
+                    myPlayer.src(src[num]);
+                    videoListBox.innerHTML = str;
+                    $(videoListBox).on('click', 'span', function () {
+                        var ind = $(this).index();
+                        myPlayer.src(src[ind]);
+                        num = ind;
+                        $('.video-list>span').removeClass('active').eq(ind).addClass('active')
+                        myPlayer.play();
+                    });
+                    // myPlayer.on("ended", function () {//自动播放
+                    //     num += 1;
+                    //     if (num >= size) num = 0;
+                    //     myPlayer.src(src[num]);
+                    // });
+                    prev.style.display = 'block';
+                    next.style.display = 'block';
+                    prev.addEventListener('click', function () {
+                        num -= 1;
+                        if (num <= -1) num = size - 1;
+                        $('.video-list>span').removeClass('active').eq(num).addClass('active');
+                        myPlayer.src(src[num]);
+                        myPlayer.play();
+                    });
+                    next.addEventListener('click', function () {
+                        num += 1;
+                        if (num >= size) num = 0;
+                        $('.video-list>span').removeClass('active').eq(num).addClass('active')
+                        myPlayer.src(src[num]);
+                        myPlayer.play();
+                    });
+                }
+            });
+        }
+
+        function getFileName(str) {//视频名称
+            var fileName = str.split('\\').pop();
+            var ind = fileName.lastIndexOf('.');
+            return fileName.substr(0, ind);
+        }
+       function pause(){
+            window.myPlayer.pause()
+       }
+    </script>
+</div>
+</body>
+</html>

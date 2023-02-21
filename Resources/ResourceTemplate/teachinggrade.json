@@ -1,0 +1,91 @@
+[{
+	"value": "grade-1",
+	"label": "小学一年级",
+	"children": [{
+		"value": "term-1",
+		"label": "上册"
+	}, {
+		"value": "term-2",
+		"label": "下册"
+	}]
+}, {
+	"value": "grade-2",
+	"label": "小学二年级",
+	"children": [{
+		"value": "term-1",
+		"label": "上册"
+	}, {
+		"value": "term-2",
+		"label": "下册"
+	}]
+}, {
+	"value": "grade-3",
+	"label": "小学三年级",
+	"children": [{
+		"value": "term-1",
+		"label": "上册"
+	}, {
+		"value": "term-2",
+		"label": "下册"
+	}]
+}, {
+	"value": "grade-4",
+	"label": "小学四年级",
+	"children": [{
+		"value": "term-1",
+		"label": "上册"
+	}, {
+		"value": "term-2",
+		"label": "下册"
+	}]
+}, {
+	"value": "grade-5",
+	"label": "小学五年级",
+	"children": [{
+		"value": "term-1",
+		"label": "上册"
+	}, {
+		"value": "term-2",
+		"label": "下册"
+	}]
+}, {
+	"value": "grade-6",
+	"label": "小学六年级",
+	"children": [{
+		"value": "term-1",
+		"label": "上册"
+	}, {
+		"value": "term-2",
+		"label": "下册"
+	}]
+}, {
+	"value": "grade-7",
+	"label": "初中一年级",
+	"children": [{
+		"value": "term-1",
+		"label": "上册"
+	}, {
+		"value": "term-2",
+		"label": "下册"
+	}]
+}, {
+	"value": "grade-8",
+	"label": "初中二年级",
+	"children": [{
+		"value": "term-1",
+		"label": "上册"
+	}, {
+		"value": "term-2",
+		"label": "下册"
+	}]
+}, {
+	"value": "grade-9",
+	"label": "初中三年级",
+	"children": [{
+		"value": "term-1",
+		"label": "上册"
+	}, {
+		"value": "term-2",
+		"label": "下册"
+	}]
+}]

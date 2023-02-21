@@ -1,0 +1,362 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.SourceLink.GitHub.1.0.0\build\Microsoft.SourceLink.GitHub.props" Condition="Exists('..\packages\Microsoft.SourceLink.GitHub.1.0.0\build\Microsoft.SourceLink.GitHub.props')" />
+  <Import Project="..\packages\Microsoft.SourceLink.Common.1.0.0\build\Microsoft.SourceLink.Common.props" Condition="Exists('..\packages\Microsoft.SourceLink.Common.1.0.0\build\Microsoft.SourceLink.Common.props')" />
+  <Import Project="..\packages\Microsoft.Build.Tasks.Git.1.0.0\build\Microsoft.Build.Tasks.Git.props" Condition="Exists('..\packages\Microsoft.Build.Tasks.Git.1.0.0\build\Microsoft.Build.Tasks.Git.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6E789346-1667-4546-A445-9A35DAC1640B}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>MusicTeachingInstall</RootNamespace>
+    <AssemblyName>MusicTeachingInstall</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\InstallPackage\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\InstallPackage\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>logo.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>false</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsBase">
+      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\WindowsBase.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Converters\BoolAsVisiableConverter.cs" />
+    <Compile Include="FlowDocumentInfoUC.xaml.cs">
+      <DependentUpon>FlowDocumentInfoUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\ApplicationPath.cs" />
+    <Compile Include="Helpers\FileHelper.cs" />
+    <Compile Include="Helpers\HttpHelper.cs" />
+    <Compile Include="Helpers\JsonHelper.cs" />
+    <Compile Include="JsonModels\AppconfigModel.cs" />
+    <Compile Include="JsonModels\QueryPageResult.cs" />
+    <Compile Include="JsonModels\ResponseData.cs" />
+    <Compile Include="LocalInstallTesting.cs" />
+    <Compile Include="NotifyPropertyChanged.cs" />
+    <Compile Include="Themes\InstallAnimation.cs" />
+    <Compile Include="Themes\InstallAnimationUC.xaml.cs">
+      <DependentUpon>InstallAnimationUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowsBase\ChildWindow.cs" />
+    <Page Include="FlowDocumentInfoUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Themes\ButtonStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\InstallAnimationUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\PathButtonStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\ProgressStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WindowsBase\ChildWindowStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="app.manifest" />
+    <None Include="Properties\app.manifest" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Resource Include="Resources\ResourceTemplate\ThmeLesson\f2f9\1.json" />
+    <Resource Include="Resources\ResourceTemplate\ThmeLesson\f2f9\2.json" />
+    <Resource Include="Resources\ResourceTemplate\ThmeLesson\f2f9\3.json" />
+    <Resource Include="Resources\ResourceTemplate\ThmeLesson\2569\1.json" />
+    <Resource Include="Resources\ResourceTemplate\ThmeLesson\2569\2.json" />
+    <Resource Include="Resources\ResourceTemplate\ThmeLesson\2569\3.json" />
+    <Resource Include="Resources\ResourceTemplate\ThmeLesson\2569\4.json" />
+    <Resource Include="Resources\ResourceTemplate\ThmeLesson\2569\5.json" />
+    <Resource Include="Resources\ResourceTemplate\ThmeLesson\a3b1\1.json" />
+    <Resource Include="Resources\ResourceTemplate\ThmeLesson\a3b1\2.json" />
+    <Resource Include="Resources\ResourceTemplate\ThmeLesson\a3b1\3.json" />
+    <Resource Include="Resources\ResourceTemplate\ThmeLesson\3e99\1.json" />
+    <Resource Include="Resources\ResourceTemplate\ThmeLesson\3e99\2.json" />
+    <Resource Include="Resources\ResourceTemplate\ThmeLesson\3e99\3.json" />
+    <Resource Include="Resources\ResourceTemplate\ThmeLesson\476e\1.json" />
+    <Resource Include="Resources\ResourceTemplate\ThmeLesson\476e\2.json" />
+    <Resource Include="Resources\ResourceTemplate\ThmeLesson\476e\3.json" />
+    <Resource Include="Resources\ResourceTemplate\ThmeLesson\476e\4.json" />
+    <Resource Include="Resources\ResourceTemplate\ThmeLesson\476e\5.json" />
+    <Resource Include="Resources\ResourceTemplate\ThmeLesson\5bef\1.json" />
+    <Resource Include="Resources\ResourceTemplate\ThmeLesson\7f12\1.json" />
+    <Resource Include="Resources\ResourceTemplate\ThmeLesson\7f12\2.json" />
+    <Resource Include="Resources\ResourceTemplate\ThmeLesson\7f12\3.json" />
+    <Resource Include="Resources\ResourceTemplate\ThmeLesson\7f12\4.json" />
+    <Resource Include="Resources\ResourceTemplate\ThmeLesson\9b39\1.json" />
+    <Resource Include="Resources\ResourceTemplate\ThmeLesson\9b39\2.json" />
+    <Resource Include="Resources\ResourceTemplate\ThmeLesson\9b39\3.json" />
+    <Resource Include="Resources\ResourceTemplate\ThmeLesson\ce1b\1.json" />
+    <Resource Include="Resources\ResourceTemplate\ThmeLesson\ce1b\2.json" />
+    <Resource Include="Resources\ResourceTemplate\ThmeLesson\f16f\1.json" />
+    <Resource Include="Resources\ResourceTemplate\ThmeLesson\f16f\2.json" />
+    <Resource Include="Resources\ResourceTemplate\resourceType.json" />
+    <Resource Include="Resources\ResourceTemplate\teachinggrade.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="logo.ico" />
+    <Resource Include="Resources\Images\avatar.png" />
+    <Resource Include="Resources\Images\White.png" />
+    <Resource Include="Resources\logo.ico" />
+    <Resource Include="Resources\Microsoft.Expression.Interactions.dll" />
+    <Resource Include="Resources\Microsoft.Practices.ServiceLocation.dll" />
+    <Resource Include="Resources\MusicTeachingModel.dll" />
+    <Resource Include="Resources\MusicTeachingServicesModel.dll" />
+    <Resource Include="Resources\MusicTeachingUninstall.exe" />
+    <Resource Include="Resources\MusicTeachingView.dll" />
+    <Resource Include="Resources\MusicTeachingViewModel.dll" />
+    <Resource Include="Resources\MusicTeachingWindow.exe" />
+    <Resource Include="Resources\MusicTeachingWindow.exe.config" />
+    <Resource Include="Resources\MusicTeachUpdateWindow.exe" />
+    <Resource Include="Resources\Newtonsoft.Json.dll" />
+    <Resource Include="Resources\ResourceTemplate\video-js.min.css" />
+    <Resource Include="Resources\ResourceTemplate\video.html" />
+    <Resource Include="Resources\ResourceTemplate\video.min.js" />
+    <Resource Include="Resources\System.Windows.Interactivity.dll" />
+    <Resource Include="Resources\WPFCommonLib.dll" />
+    <Resource Include="Resources\x86\cef.pak" />
+    <Resource Include="Resources\x86\CefSharp.BrowserSubprocess.Core.dll" />
+    <Resource Include="Resources\x86\CefSharp.BrowserSubprocess.exe" />
+    <Resource Include="Resources\x86\CefSharp.Core.dll" />
+    <Resource Include="Resources\x86\CefSharp.Core.xml" />
+    <Resource Include="Resources\x86\CefSharp.dll" />
+    <Resource Include="Resources\x86\CefSharp.Wpf.dll" />
+    <Resource Include="Resources\x86\CefSharp.Wpf.XML" />
+    <Resource Include="Resources\x86\CefSharp.XML" />
+    <Resource Include="Resources\x86\cef_100_percent.pak" />
+    <Resource Include="Resources\x86\cef_200_percent.pak" />
+    <Resource Include="Resources\x86\cef_extensions.pak" />
+    <Resource Include="Resources\x86\chrome_elf.dll" />
+    <Resource Include="Resources\x86\d3dcompiler_47.dll" />
+    <Resource Include="Resources\x86\devtools_resources.pak" />
+    <Resource Include="Resources\x86\icudtl.dat" />
+    <Resource Include="Resources\x86\libcef.dll" />
+    <Resource Include="Resources\x86\libEGL.dll" />
+    <Resource Include="Resources\x86\libGLESv2.dll" />
+    <Resource Include="Resources\x86\locales\en-US.pak" />
+    <Resource Include="Resources\x86\locales\zh-CN.pak" />
+    <Resource Include="Resources\x86\natives_blob.bin" />
+    <Resource Include="Resources\x86\snapshot_blob.bin" />
+    <Resource Include="Resources\x86\swiftshader\libEGL.dll" />
+    <Resource Include="Resources\x86\swiftshader\libGLESv2.dll" />
+    <Resource Include="Resources\x86\v8_context_snapshot.bin" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\CommonLib.dll" />
+    <Resource Include="Resources\ConfigInfo.dll" />
+    <Resource Include="Resources\ControlsResource.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\ResourceTemplate\jquery.min.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\logoWeb.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\ResourceTemplate\defaultResource.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\x86\README.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\ResourceTemplate\videoPlay.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\ResourceTemplate\ThmeLesson\476e\五线谱教学.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\ResourceTemplate\ThmeLesson\9b39\乐曲欣赏.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\ResourceTemplate\ThmeLesson\ce1b\乐器介绍.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\ResourceTemplate\ThmeLesson\f16f\稳定速度训练.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\ResourceTemplate\ThmeLesson\9c09\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\ResourceTemplate\ThmeLesson\a3b1\声势游戏.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\ResourceTemplate\ThmeLesson\2569\节奏游戏.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\ResourceTemplate\ThmeLesson\3e99\身体打击乐四拍子.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\ResourceTemplate\ThmeLesson\5bef\身体打击乐六拍子.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\ResourceTemplate\ThmeLesson\f2f9\音准练习.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\ResourceTemplate\mp3play.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\AudioTuner\JinDuoTuner.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\ICSharpCode.SharpZipLib.dll" />
+    <Resource Include="Resources\x86\api-ms-win-core-console-l1-1-0.dll" />
+    <Resource Include="Resources\x86\api-ms-win-core-datetime-l1-1-0.dll" />
+    <Resource Include="Resources\x86\api-ms-win-core-debug-l1-1-0.dll" />
+    <Resource Include="Resources\x86\api-ms-win-core-errorhandling-l1-1-0.dll" />
+    <Resource Include="Resources\x86\api-ms-win-core-file-l1-1-0.dll" />
+    <Resource Include="Resources\x86\api-ms-win-core-file-l1-2-0.dll" />
+    <Resource Include="Resources\x86\api-ms-win-core-file-l2-1-0.dll" />
+    <Resource Include="Resources\x86\api-ms-win-core-handle-l1-1-0.dll" />
+    <Resource Include="Resources\x86\api-ms-win-core-heap-l1-1-0.dll" />
+    <Resource Include="Resources\x86\api-ms-win-core-interlocked-l1-1-0.dll" />
+    <Resource Include="Resources\x86\api-ms-win-core-libraryloader-l1-1-0.dll" />
+    <Resource Include="Resources\x86\api-ms-win-core-localization-l1-2-0.dll" />
+    <Resource Include="Resources\x86\api-ms-win-core-memory-l1-1-0.dll" />
+    <Resource Include="Resources\x86\api-ms-win-core-namedpipe-l1-1-0.dll" />
+    <Resource Include="Resources\x86\api-ms-win-core-processenvironment-l1-1-0.dll" />
+    <Resource Include="Resources\x86\api-ms-win-core-processthreads-l1-1-0.dll" />
+    <Resource Include="Resources\x86\api-ms-win-core-processthreads-l1-1-1.dll" />
+    <Resource Include="Resources\x86\api-ms-win-core-profile-l1-1-0.dll" />
+    <Resource Include="Resources\x86\api-ms-win-core-rtlsupport-l1-1-0.dll" />
+    <Resource Include="Resources\x86\api-ms-win-core-string-l1-1-0.dll" />
+    <Resource Include="Resources\x86\api-ms-win-core-synch-l1-1-0.dll" />
+    <Resource Include="Resources\x86\api-ms-win-core-synch-l1-2-0.dll" />
+    <Resource Include="Resources\x86\api-ms-win-core-sysinfo-l1-1-0.dll" />
+    <Resource Include="Resources\x86\api-ms-win-core-timezone-l1-1-0.dll" />
+    <Resource Include="Resources\x86\api-ms-win-core-util-l1-1-0.dll" />
+    <Resource Include="Resources\x86\api-ms-win-crt-conio-l1-1-0.dll" />
+    <Resource Include="Resources\x86\api-ms-win-crt-convert-l1-1-0.dll" />
+    <Resource Include="Resources\x86\api-ms-win-crt-environment-l1-1-0.dll" />
+    <Resource Include="Resources\x86\api-ms-win-crt-filesystem-l1-1-0.dll" />
+    <Resource Include="Resources\x86\api-ms-win-crt-heap-l1-1-0.dll" />
+    <Resource Include="Resources\x86\api-ms-win-crt-locale-l1-1-0.dll" />
+    <Resource Include="Resources\x86\api-ms-win-crt-math-l1-1-0.dll" />
+    <Resource Include="Resources\x86\api-ms-win-crt-multibyte-l1-1-0.dll" />
+    <Resource Include="Resources\x86\api-ms-win-crt-private-l1-1-0.dll" />
+    <Resource Include="Resources\x86\api-ms-win-crt-process-l1-1-0.dll" />
+    <Resource Include="Resources\x86\api-ms-win-crt-runtime-l1-1-0.dll" />
+    <Resource Include="Resources\x86\api-ms-win-crt-stdio-l1-1-0.dll" />
+    <Resource Include="Resources\x86\api-ms-win-crt-string-l1-1-0.dll" />
+    <Resource Include="Resources\x86\api-ms-win-crt-time-l1-1-0.dll" />
+    <Resource Include="Resources\x86\api-ms-win-crt-utility-l1-1-0.dll" />
+    <Resource Include="Resources\x86\ucrtbase.dll" />
+    <Resource Include="Resources\x86\vcruntime140.dll" />
+    <Resource Include="Resources\zxing.dll" />
+    <Resource Include="Resources\zxing.presentation.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\x86\msvcp140.dll" />
+    <Resource Include="Resources\x86\vccorlib140.dll" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>这台计算机上缺少此项目引用的 NuGet 程序包。使用“NuGet 程序包还原”可下载这些程序包。有关更多信息，请参见 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的文件是 {0}。</ErrorText>
+    </PropertyGroup>
+  </Target>
+</Project>
